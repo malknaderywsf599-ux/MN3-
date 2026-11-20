@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+<title>WebTerm</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/css/xterm.css">
+<style>
+  html, body { margin:0; height:100%; background:#0b0d10; overflow:hidden; }
+  body { display:flex; flex-direction:column; height:100dvh; }
+  #term { flex:1; min-height:0; padding:6px; }
+  #keys { display:flex; gap:4px; padding:5px; background:#161a20; overflow-x:auto; }
+  #keys button { flex:0 0 auto; min-width:44px; padding:10px 8px; border:0; border-radius:6px;
+                 background:#262c36; color:#e6e6e6; font:14px monospace; }
+  #keys button:active { background:#3a4352; }
+  #editor { position:fixed; inset:0; background:#0b0d10; display:none; flex-direction:column; z-index:10; }
+  #editor.on { display:flex; }
+  #edTitle { padding:10px; background:#161a20; color:#9fd; font:14px monospace; }
+  #edText { flex:1; background:#0b0d10; color:#e6e6e6; border:0; padding:10px; font:14px monospace; resize:none; outline:none; white-space:pre; overflow:auto; }
+  #edBtns { display:flex; gap:8px; padding:8px; background:#161a20; }
+  #edBtns button { flex:1; padding:12px; border:0; border-radius:8px; font-size:15px; color:#fff; }
+  #edSave { background:#2b8a3e; } #edCancel { background:#a33; }
+</style>
+</head>
+<body>
+<div id="term"></div>
+<div id="keys">
+  <button data-k="&#27;">ESC</button>
+  <button data-k="&#9;">TAB</button>
+  <button data-k="&#3;">^C</button>
+  <button data-k="&#27;[A">↑</button>
+  <button data-k="&#27;[B">↓</button>
+  <button data-k="/">/</button>
+  <button data-k="-">-</button>
+  <button data-k="~">~</button>
+  <button data-k="|">|</button>
+  <button data-k=">">&gt;</button>
+  <button data-k=".">.</button>
+  <button data-k="_">_</button>
+</div>
+<div id="editor">
+  <div id="edTitle"></div>
+  <textarea id="edText" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+  <div id="edBtns"><button id="edSave">حفظ</button><button id="edCancel">إلغاء</button></div>
+</div>
+<input type="file" id="up" multiple hidden>
+<script type="module" src="term.js"></script>
+</body>
+</html>
